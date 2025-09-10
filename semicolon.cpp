@@ -37,3 +37,50 @@ int main() {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+// Input from local file 
+
+
+#include <iostream>
+#include <fstream>
+#include <string>
+using namespace std;
+
+int main() {
+    ifstream file("input.cpp"); // input file
+    if (!file) {
+        cerr << "Cannot open file!" << endl;
+        return 1;
+    }
+
+    string line;
+    int lineNumber = 0;
+    bool allCorrect = true;
+
+    while (getline(file, line)) {
+        lineNumber++;
+        // লাইন শেষে white space মুছে দাও
+        while(!line.empty() && isspace(line.back())) line.pop_back();
+
+        // যদি লাইন খালি না হয় এবং semicolon না থাকে
+        if (!line.empty() && line.back() != ';' && line.find('{') == string::npos && line.find('}') == string::npos) {
+            cout << "Syntax error: Missing semicolon at line " << lineNumber << endl;
+            allCorrect = false;
+        }
+    }
+
+    if (allCorrect) {
+        cout << "All statements are correct! No missing semicolons." << endl;
+    }
+
+    file.close();
+    return 0;
+}
+

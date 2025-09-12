@@ -9,7 +9,7 @@ int main() {
     cin >> n;
 
     int pid[20], at[20], bt[20], wt[20], tat[20];
-    int completed[20] = {0}; // 0 = not completed, 1 = completed
+    int completed[20] = {0}; 
 
     // Input
     for (int i = 0; i < n; i++) {
